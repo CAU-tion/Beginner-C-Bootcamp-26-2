@@ -1,1 +1,88 @@
-# Beginner-C-Bootcamp-26-2
+# 🏕️ 2026-2 Beginner C Bootcamp
+
+## 1) 활동 내용
+
+일방적으로 강의와 공부 자료를 제공받는 방식이 아닌, 주차별로 주어지는 Challenge를 **스스로 수행하면서** 필요한 개념을 찾아 공부하고, 해킹·보안 공부의 기초가 되는 지식을 C언어 학습과 함께 습득하는 과정입니다.
+
+중간고사 기간을 제외한 총 **10주차 과정**으로 이루어지며, **Challenge 완료 80% 이상** 달성 시 수료자 명단 등재 및 수료증이 발급됩니다.
+
+## 2) 활동 목표
+
+- C언어 기초 지식 습득
+- 시스템 해킹, 리버싱 등의 학습에 도움되는 기초 보안 지식 습득
+- 자소서, 면접, 이력서 등에 활용하기 좋은 형태의 결과물 생성
+
+## 3) 일정
+
+```
+|    주 차    |      날 짜       |
+|------------|-----------------|
+|    01주차   |  09/14 - 09/20  |
+|    02주차   |  09/21 - 09/27  |
+|    03주차   |  09/28 - 10/4  |
+|    04주차   |  10/5 - 10/11  |
+| 중간고사기간 |  10/12 - 10/18  |
+| 중간고사기간 |  10/19 - 10/25  |
+|    05주차   |  10/26 - 11/1  |
+|    06주차   |  11/2 - 11/8  |
+|    07주차   |  11/9 - 11/15  |
+|    08주차   |  11/16 - 11/22  |
+|    09주차   |  11/23 - 11/29  |
+|    10주차   |  11/30 - 12/6  |
+```
+
+## 4) 진행 방식
+
+1. 매주 제공되는 Challenge를 수행
+2. Challenge 제출물을 Github에 업로드(하단에서 설명)
+
+- 제출물 형식은 자유입니다(스크린샷, README.md 정리 등). 해당 Challenge를 수행했다는 것을 확인할 수 있는 제출물의 형태이면 어떤 것이든 좋습니다.
+
+3. 관리자의 승인 후 제출 확인 처리
+
+## 5) Challenge 제출 방식
+
+Github Repository 본인 디렉토리에 추가하여 제출합니다.
+
+```
+main에서 본인 브랜치 생성
+    ↓
+challenges/본인이름/week01/ 에 과제 작성
+    ↓
+본인 브랜치에 push
+    ↓
+main으로 PR 올리기 (PR 제목: [week01] 홍길동]
+    ↓
+관리자가 확인 후 merge
+```
+
+## 6) 추가로
+
+1. 진행하면서 모르는 부분이 있거나, 도움이 필요한 사항이 있다면 언제든지 단체 톡방 혹은 여기 채널에서 말씀해주시면 좋을 것 같습니다. 함께 Bootcamp를 진행하는 다른 부원들과 서로 도우며 진행하는 모습도 아주 좋습니다.
+2. Challenge 제출 기한을 지켜주세요. 만일 한 주차의 Challenge 제출을 놓쳤다면 늦게라도 제출하시거나, 해당 주차는 건너뛰시고 다음 주차를 제출하셔도 됩니다.
+
+<br>
+
+10주 동안 파이팅입니다!
+
+<br>
+
+> 🖇️ Bootcamp Notion
+> https://caution.notion.site/26-1-beginner-c-bootcamp
+
+> 🖇️ Bootcamp Github Repository
+> https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1
+
+## 7) ⭐ 수료자 명단 ⭐
+
+수료자는 총 10주차 과정의 Challenge를 80% 이상 완료한 부원으로 선정됩니다.
+
+|기수|이름|Github ID|Repository|
+|----|---|-----------|---------|
+|7기|이나원|[@fromNowAn](https://github.com/fromNowAn)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/%EC%9D%B4%EB%82%98%EC%9B%90)|
+|7기|정지윤|[@jeongjy-collab](https://github.com/jeongjy-collab)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/jiyun)|
+|8기|박상은|[@sangeun6413](https://github.com/sangeun6413)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/sangeun)|
+|9기|권민찬|[@tronve](https://github.com/tronve)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/%EA%B6%8C%EB%AF%BC%EC%B0%AC)|
+|9기|김문정|[@kimme-more](https://github.com/kimme-more)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/%EA%B9%80%EB%AC%B8%EC%A0%95)|
+|9기|김준성|[@alex1249](https://github.com/alex1249)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/%EA%B9%80%EC%A4%80%EC%84%B1)|
+|9기|장원호|[@uch0709](https://github.com/uch0709)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/wonho)|
