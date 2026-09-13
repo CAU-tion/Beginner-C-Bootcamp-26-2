@@ -63,15 +63,15 @@ main으로 PR 올리기 (PR 제목: [week01] 홍길동]
 
 <br>
 
-10주 동안 파이팅입니다!
+10주 동안 모두 수료까지 화이팅!!!
 
 <br>
 
 > 🖇️ Bootcamp Notion
-> https://caution.notion.site/26-1-beginner-c-bootcamp
+> https://cau-tion.notion.site/26-2-Beginner-C-Bootcamp-3d5d600a845e80a28545ef8215a8b0a2
 
 > 🖇️ Bootcamp Github Repository
-> https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1
+> https://github.com/CAU-tion/Beginner-C-Bootcamp-26-2
 
 ## 7) ⭐ 수료자 명단 ⭐
 
@@ -79,10 +79,3 @@ main으로 PR 올리기 (PR 제목: [week01] 홍길동]
 
 |기수|이름|Github ID|Repository|
 |----|---|-----------|---------|
-|7기|이나원|[@fromNowAn](https://github.com/fromNowAn)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/%EC%9D%B4%EB%82%98%EC%9B%90)|
-|7기|정지윤|[@jeongjy-collab](https://github.com/jeongjy-collab)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/jiyun)|
-|8기|박상은|[@sangeun6413](https://github.com/sangeun6413)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/sangeun)|
-|9기|권민찬|[@tronve](https://github.com/tronve)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/%EA%B6%8C%EB%AF%BC%EC%B0%AC)|
-|9기|김문정|[@kimme-more](https://github.com/kimme-more)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/%EA%B9%80%EB%AC%B8%EC%A0%95)|
-|9기|김준성|[@alex1249](https://github.com/alex1249)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/%EA%B9%80%EC%A4%80%EC%84%B1)|
-|9기|장원호|[@uch0709](https://github.com/uch0709)|[repo](https://github.com/CAU-tion/Beginner-C-Bootcamp-26-1/tree/main/challenges/wonho)|
