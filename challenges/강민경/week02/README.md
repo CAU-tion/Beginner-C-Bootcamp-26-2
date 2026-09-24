@@ -12,24 +12,41 @@
 - 컴파일러: GCC
 
 ```bash
-gcc challenge1.c -o challenge1
-./challenge1
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void){
+    printf("=== 기본 자료형 크기 (byte) ===\n");
+    printf("char        : %zu\n", sizeof(char));
+    printf("short       : %zu\n", sizeof(short));
+    printf("int         : %zu\n", sizeof(int));
+    printf("long        : %zu\n", sizeof(long));
+    printf("long long   : %zu\n", sizeof(long long));
+    printf("float       : %zu\n", sizeof(float));
+    printf("double      : %zu\n", sizeof(double));
+    printf("long double : %zu\n", sizeof(long double));
+    printf("bool        : %zu\n", sizeof(bool));
+
+    printf("\n=== signed / unsigned 크기 비교 (byte) ===\n");
+    printf("signed char      : %zu / unsigned char      : %zu\n",
+           sizeof(signed char), sizeof(unsigned char));
+    printf("signed short     : %zu / unsigned short     : %zu\n",
+           sizeof(signed short), sizeof(unsigned short));
+    printf("signed int       : %zu / unsigned int       : %zu\n",
+           sizeof(signed int), sizeof(unsigned int));
+    printf("signed long      : %zu / unsigned long      : %zu\n",
+           sizeof(signed long), sizeof(unsigned long));
+    printf("signed long long : %zu / unsigned long long : %zu\n",
+           sizeof(signed long long), sizeof(unsigned long long));
+
+    return 0;
+}
 ```
 
 ### 실행 결과
 ![Challenge 1 실행 결과](week02_challenge1.png)
 크기 단위는 byte이다.
 
-| 자료형 | 크기 | signed 크기 | unsigned 크기 |
-|---|---:|---:|---:|
-| char | — | — | — |
-| short | — | — | — |
-| int | — | — | — |
-| long | — | — | — |
-| long long | — | — | — |
-| float | — | 해당 없음 | 해당 없음 |
-| double | — | 해당 없음 | 해당 없음 |
-| long double | — | 해당 없음 | 해당 없음 |
 
 ### 결과 분석
 
