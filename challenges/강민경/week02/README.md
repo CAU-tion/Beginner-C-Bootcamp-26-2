@@ -56,6 +56,47 @@ int main(void){
 
 ## Challenge 2. 비트 연산 프로그램 작성
 
+```bash
+#include <stdio.h>
+#include <limits.h>
+
+void print_result(const char *name, unsigned int value)
+{
+    printf("%-10s %10u  ", name, value);
+
+    size_t bits = sizeof(value) * CHAR_BIT;
+
+    for (size_t i = bits; i > 0; i--) {
+        putchar((value >> (i - 1)) & 1U ? '1' : '0');
+    }
+
+    putchar('\n');
+}
+
+int main(void){
+    unsigned int a,b;
+
+    printf("두 정수를 입력하세요: ");
+    if(scanf("%u %u", &a, &b)!=2){
+        return 1;
+    }
+    print_result("a", a);
+    print_result("b", b);
+    print_result("a & b", a & b);
+    print_result("a | b", a | b);
+    print_result("a ^ b", a ^ b);
+    print_result("~a", ~a);
+    print_result("~b", ~b);
+    print_result("a << 1", a << 1);
+    print_result("a >> 1", a >> 1);
+
+    return 0;
+}
+```
+
+### 실행 결과
+![Challenge 1 실행 결과](week02_challenge2.png)
+
 
 ## Challenge 3. Integer Overflow 실험
 
