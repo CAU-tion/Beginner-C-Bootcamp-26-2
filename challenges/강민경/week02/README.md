@@ -53,3 +53,11 @@ int main(void){
 자료형의 크기는 C 언어에서 모두 고정되어 있지 않으며, 사용하는 시스템과 컴파일러에 따라 달라질 수 있다. 이번 결과는 WSL의 Linux 환경에서 GCC로 컴파일해 확인한 값이다.
 
 같은 정수형에서 `signed`와 `unsigned`의 크기는 같았다. 두 자료형은 사용하는 메모리 크기보다 **표현할 수 있는 값의 범위**에서 차이가 난다. `signed`는 음수와 양수를 표현하고, `unsigned`는 0 이상의 값만 표현한다.
+
+## Challenge 2. 비트 연산 프로그램 작성
+
+
+## Challenge 3. Integer Overflow 실험
+
+
+## Challenge 4. Format String 맛보기
