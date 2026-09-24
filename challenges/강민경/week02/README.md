@@ -17,7 +17,7 @@ gcc challenge1.c -o challenge1
 ```
 
 ### 실행 결과
-![Challenge 1 실행 결과](week2_challenge1.png)
+![Challenge 1 실행 결과](week02_challenge1.png)
 크기 단위는 byte이다.
 
 | 자료형 | 크기 | signed 크기 | unsigned 크기 |
