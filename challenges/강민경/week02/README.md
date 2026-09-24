@@ -100,5 +100,35 @@ int main(void){
 
 ## Challenge 3. Integer Overflow 실험
 
+```bash
+#include <stdio.h>
+#include <limits.h>
+
+int main(void){
+    int signed_max = INT_MAX;
+    unsigned int unsigned_max = UINT_MAX;
+
+    int signed_result = signed_max + 1;
+    unsigned int unsigned_result = unsigned_max +1;
+
+    printf("signed 최댓값: %d\n", signed_max);
+    printf("signed + 1:  %d\n", signed_result);
+
+    printf("unsigned 최댓값: %u\n", unsigned_max);
+    printf("unsigned + 1:   %u\n", unsigned_result);
+
+    return 0;
+}
+```
+
+### 실행 결과
+![Challenge 1 실행 결과](week02_challenge3.png)
+크기 단위는 byte이다.
+
+
+### 결과 분석
+`int`의 최댓값 `INT_MAX`에 1을 더했을 때는 내 실행 환경에서 음수가 출력되었다. 하지만 signed 정수의 오버플로는 C 언어에서 정의되지 않은 동작이므로, 항상 같은 결과가 나온다고 보장할 수 없다.
+`unsigned int`의 최댓값 `UINT_MAX`에 1을 더한 결과는 0이었다. unsigned 정수는 표현 가능한 범위를 넘으면 0부터 다시 시작하도록 C 언어에서 정해져 있기 때문이다.
+
 
 ## Challenge 4. Format String 맛보기
