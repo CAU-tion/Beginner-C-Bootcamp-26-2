@@ -133,3 +133,40 @@ int main(void){
 
 
 ## Challenge 4. Format String 맛보기
+
+```bash
+#include <stdio.h>
+
+int main(int argc, char *argv[]){
+
+    int number = 42;
+    char text[] = "hello";
+
+    printf("%d\n", number);
+    printf("%s\n", text);
+
+    printf("10진수 %%d: %d\n", number);
+    printf("16진수 %%x: %x\n", (unsigned int)number);
+    printf("문자열 %%s: %s\n", text);
+    printf("42의 주소 %%p: %p\n", (void*)&number);
+
+    if(argc>1){
+        fflush(stdout);
+        printf("잘못된 포맷: %s\n", number);
+    }
+
+    return 0;
+
+}
+```
+
+### 실행 결과
+![Challenge 1 실행 결과](week02_challenge4.png)
+
+
+
+### 결과 분석
+정수 `42`는 `%d`로 출력하면 10진수 `42`, `%x`로 출력하면 16진수 `2a`가 나왔다. `%s`는 문자열 `hello`를 출력했고, `%p`는 `number` 변수의 메모리 주소를 출력했다. 주소는 실행할 때마다 달라질 수 있다.
+
+정수 `number`를 문자열용 지정자 `%s`로 출력하는 실험에서는 `Segmentation fault`가 발생했다. `%s`가 정수 값 `42`를 문자열의 주소로 해석해 접근하려 했기 때문이다. 잘못된 포맷 지정자를 사용한 결과는 보장되지 않으므로, 다른 환경에서도 반드시 같은 오류가 발생하는 것은 아니다.
+
