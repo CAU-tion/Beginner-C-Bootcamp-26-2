@@ -7,7 +7,7 @@
 - 
 ## Challenge 1. Format String Bug 실습
 
-### 실습 내용
+### 실습 코드
 
 ```bash
 #include <stdio.h>
@@ -66,3 +66,52 @@ printf("%x %x %x %x", 10, 20, 30, 40);
 
 반면 안전한 코드인 `printf("%s", argv[1]);`에서는 포맷 문자열이 `"%s"`로 고정되어 있고, 이에 대응하는 문자열 인자 `argv[1]`도 전달된다. **`argv[1]` 안의 `%x` 등은 다시 포맷 지정자로 해석되지 않으므로** 입력한 문자열이 그대로 출력된다.
 
+## Challenge 2. 반복문 3종 비교
+### 실습 코드
+```bash
+#include <stdio.h>
+
+int main(){
+    int sum_for = 0;
+    int sum_while = 0;
+    int sum_do_while = 0;
+
+
+    for(int i = 1; i<=10; i++){
+        sum_for += i;
+    }
+
+    int j = 1;
+
+    while(j<=10){
+        sum_while += j;
+        j++;
+    }
+
+    int k = 1;
+
+    do{
+        sum_do_while += k;
+        k++;
+    }while(k <= 10);
+
+    printf("sum_for: %d\n", sum_for);
+    printf("sum_while: %d\n", sum_while);
+    printf("sum_do_while: %d\n", sum_do_while);
+
+    return 0;
+}
+```
+
+### 실행결과
+![Challenge 2 실행 결과](week03_challenge2.png)
+
+### for, while, do-while 차이점
+
+| 반복문 | 코드 상의 차이점 | 적절한 사용 상황 |
+|---|---|---|
+| `for` | 초기화(`int i = 1`), 조건(`i <= 10`), 증가식(`i++`)을 한곳에 작성한다. 본문 실행 전에 조건을 검사한다. | 반복 횟수나 범위가 명확할 때|
+| `while` | 초기화는 반복문 앞에, 증가식은 본문 안에 작성한다. 본문 실행 전에 조건을 검사한다. | 반복 횟수보다 특정 조건의 만족 여부가 중요할 때|
+| `do-while` | 본문을 먼저 실행한 뒤 조건을 검사한다. 마지막 `while (조건)` 뒤에 세미콜론이 필요하다. | 조건과 관계없이 본문을 최소 한 번 실행해야 할 때|
+
+## Challenge 3. 조건문으로 분기 구현
