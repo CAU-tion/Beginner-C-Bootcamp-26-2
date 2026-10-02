@@ -115,3 +115,45 @@ int main(){
 | `do-while` | 본문을 먼저 실행한 뒤 조건을 검사한다. 마지막 `while (조건)` 뒤에 세미콜론이 필요하다. | 조건과 관계없이 본문을 최소 한 번 실행해야 할 때|
 
 ## Challenge 3. 조건문으로 분기 구현
+### 실습 코드
+```bash
+#include <stdio.h>
+
+int main(){
+    int num;
+    printf("정수를 입력하세요: ");
+    if (scanf("%d", &num) != 1) return 1;
+
+    if(num > 0){
+        printf("양수_if\n");
+    }
+    else if (num < 0){
+        printf("음수_if\n");
+    }
+    else printf("0_if\n");
+
+    printf("%s\n", (num > 0) ? "양수_ternary": (num <0) ? "음수_ternary" : "0_ternary");
+
+    int sign = (num > 0) - (num < 0);
+
+    switch (sign) {
+        case 1:
+            printf("양수_switch\n");
+            break;
+        case -1:
+            printf("음수_switch\n");
+            break;
+        case 0:
+            printf("0_switch\n");
+            break;
+    }
+
+
+    return 0;
+}
+```
+
+### 실행결과
+![Challenge 3 실행 결과](week03_challenge3.png)
+
+## Challenge 4.
