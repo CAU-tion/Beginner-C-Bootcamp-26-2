@@ -175,7 +175,7 @@ int main(void) {
 ```
 
 ### 실행결과
-![Challenge 4 실행 결과](week03_challenge4-1.png)
+<img src="week03_challenge4-1.png" alt="Challenge 4 실행 결과" width="500">
 ![Challenge 4 실행 결과](week03_challenge4-2.png)
 ![Challenge 4 실행 결과](week03_challenge4-3.png)
 ![Challenge 4 실행 결과](week03_challenge4-4.png)
