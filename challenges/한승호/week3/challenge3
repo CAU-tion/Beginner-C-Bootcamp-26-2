@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main(){
+        int num;
+        printf("입력");
+        scanf("%d", &num);
+
+        printf("[if문] ");
+        if (num > 0) {
+        printf("양수\n");
+    }
+        else if (num < 0) {
+        printf("음수\n");
+    }
+        else {
+        printf("0\n");
+    }
+        printf("[삼항 연산자] ");
+        printf("%s\n", (num > 0) ? "양수" : ((num < 0) ? "음수" : "0"));
+
+
+        printf("[switch문] ");
+    int state = (num > 0) - (num < 0);
+
+    switch (state) {
+        case 1:
+            printf("양수\n");
+            break;
+        case -1:
+            printf("음수\n");
+            break;
+        case 0:
+            printf("0\n");
+            break;
+    }
+
+    return 0;
+}
