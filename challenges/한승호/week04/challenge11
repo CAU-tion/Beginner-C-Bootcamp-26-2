@@ -1,0 +1,49 @@
+
+
+#include <stdio.h>
+
+
+void banner(){
+    printf("시저 암호 인코더\n");
+}
+
+void encode(char *str, int shift){
+    shift = shift % 26;
+    if (shift < 0) shift += 26;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            str[i] = (str[i] - 'a' + shift) % 26 + 'a';
+        } 
+        else if (str[i] >= 'A' && str[i] <= 'Z') {
+            str[i] = (str[i] - 'A' + shift) % 26 + 'A';
+        }
+    }
+    printf("결과 문자열: %s\n", str);
+}
+
+int get_shift(){
+    int shift;
+    printf("입력\n");
+    scanf("%d",&shift);
+    return shift;
+}
+
+int main()
+{
+    char text[100];
+    
+    banner();
+    
+    printf("입력하세요: ");
+    scanf("%s", text);
+    
+    int shift = get_shift();
+    encode(text, shift);
+    
+    return 0;
+}
+1. 가독성
+2. 모듈화
+3. 코드의 재사용
+4. 간편한 유지보수
