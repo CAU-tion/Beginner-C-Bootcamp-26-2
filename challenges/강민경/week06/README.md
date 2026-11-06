@@ -8,7 +8,7 @@
 ## Challenge 1. 포인터 실습 기초
 
 ### 실습 코드
-'''c
+'''bash
 #include <stdio.h>
 
 int main(){
@@ -45,7 +45,7 @@ int main(){
 ## Challenge 2. 포인터 연산 실습
 
 ### 실습 코드
-'''c
+'''bash
 #include <stdio.h>
 
 int main(void){
@@ -115,7 +115,7 @@ ptr이 배열의 시작을 가리킬 때, `arr[i]`와 `*(ptr+i)`는 같은 원�
 ## Challenge 3. call by value vs call by reference 비
 
 ### 실습 코드
-'''c
+'''bash
 #include <stdio.h>
 
 void swap_by_value(int a, int b){
