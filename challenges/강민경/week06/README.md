@@ -77,7 +77,7 @@ int main(void){
 ```
 
 ### 실행 결과
-![challenge 1 실행 결과](week06_challenge2.png)
+![challenge 2 실행 결과](week06_challenge2.png)
 
 ### 포인터 증가·감소에 따른 주소 변화
 
@@ -152,7 +152,7 @@ int main(void){
 ```
 
 ### 실행 결과
-![challenge 1 실행 결과](week06_challenge3.png)
+![challenge 3 실행 결과](week06_challenge3.png)
 
 ### 두 방식의 차이와 사용 상황
 
