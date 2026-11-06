@@ -45,7 +45,7 @@ int main(){
 ## Challenge 2. 포인터 연산 실습
 
 ### 실습 코드
-'''bash
+```c
 #include <stdio.h>
 
 int main(void){
@@ -74,7 +74,7 @@ int main(void){
 
     return 0;
 }
-'''
+```
 
 ### 실행 결과
 ![challenge 1 실행 결과](week06_challenge2.png)
@@ -115,7 +115,7 @@ ptr이 배열의 시작을 가리킬 때, `arr[i]`와 `*(ptr+i)`는 같은 원�
 ## Challenge 3. call by value vs call by reference 비
 
 ### 실습 코드
-'''bash
+```c
 #include <stdio.h>
 
 void swap_by_value(int a, int b){
@@ -149,7 +149,7 @@ int main(void){
     printf("함수 호출 후 : x=%d, y=%d\n", x, y);
     return 0;
 }
-'''
+```
 
 ### 실행 결과
 ![challenge 1 실행 결과](week06_challenge3.png)
