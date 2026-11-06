@@ -8,7 +8,7 @@
 ## Challenge 1. 포인터 실습 기초
 
 ### 실습 코드
-'''bash
+```c
 #include <stdio.h>
 
 int main(){
@@ -33,7 +33,7 @@ int main(){
     return 0;
 
 }
-'''
+```
 ### 실행 결과
 
 ![challenge 1 실행 결과](week06_challenge1.png)
