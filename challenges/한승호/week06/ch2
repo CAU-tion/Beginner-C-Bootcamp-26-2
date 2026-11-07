@@ -1,0 +1,28 @@
+    for (int i = 0; i < 5; i++) {
+        printf("arr[%d] = %d, *(ptr+%d) = %d\n",
+               i, arr[i], i, *(ptr + i));
+    }
+
+    printf("\n[주소 비교]\n");
+    printf("arr의 주소: %p\n", (void*)arr);
+    printf("ptr의 주소값: %p\n", (void*)ptr);
+
+    printf("\n[포인터 증가]\n");
+    printf("증가 전 주소: %p\n", (void*)ptr);
+
+    ptr++;
+    printf("ptr++ 후 주소: %p\n", (void*)ptr);
+
+    ptr++;
+    printf("ptr++ 후 주소: %p\n", (void*)ptr);
+
+    ptr--;
+    printf("ptr-- 후 주소: %p\n", (void*)ptr);
+
+    printf("\n[포인터가 가리키는 값]\n");
+    printf("*ptr = %d\n", *ptr);
+
+    return 0;
+}
+
+베열은 해당 주소를 저장한 포인터(ptr)와 동일하게 배열의 원소에 접근할 수 있다.
