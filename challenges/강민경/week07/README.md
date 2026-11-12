@@ -61,7 +61,7 @@ int main(void){
 
 ### 실행 결과
 
-![Challenge 1 실행 결과](week07_challenge1.png)
+![Challenge 1 실행 결과](images/week07_challenge1.png)
 
 | 대상 | 할당된 주소 | 저장된 값 |
 |---|---|---|
@@ -83,9 +83,9 @@ print arr
 info proc mappings
 ```
 
-![GDB에서 할당된 주소 확인](week07_challenge1_gdb.png)
+![GDB에서 할당된 주소 확인](images/week07_challenge1_gdb.png)
 
-![Heap 영역 확인](week07_challenge1_heap.png)
+![Heap 영역 확인](images/week07_challenge1_heap.png)
 
 | 확인 항목 | 관찰 결과 |
 |---|---|
@@ -165,7 +165,7 @@ int main(void){
 
 ### 실행 결과
 
-![Challenge 2 실행 결과](week07_challenge2.png)
+![Challenge 2 실행 결과](images/week07_challenge2.png)
 
 | 확인 항목 | 실제 관찰 결과 |
 |---|---|
@@ -201,7 +201,7 @@ x/16bx $saved
 
 **1. free() 실행 전**
 
-![free 실행 전 메모리](week07_challenge2_before_free.png)
+![free 실행 전 메모리](images/week07_challenge2_before_free.png)
 
 - 포인터에 저장된 주소: `0x555555559010`
 - 해당 주소에서 읽은 정수: `1234`
@@ -220,7 +220,7 @@ x/1dw $saved
 x/16bx $saved
 ```
 
-![free 실행 후 메모리](week07_challenge2_after_free.png)
+![free 실행 후 메모리](images/week07_challenge2_after_free.png)
 
 | 확인 항목 | `free()` 전 | `free()` 후 |
 |---|---|---|
@@ -240,7 +240,7 @@ gcc -g -O0 -fsanitize=address -fno-omit-frame-pointer challenge2.c -o challenge2
 ./challenge2_asan
 ```
 
-![AddressSanitizer 실행 결과](week07_challenge2_asan.png)
+![AddressSanitizer 실행 결과](images/week07_challenge2_asan.png)
 
 실행 결과 다음 오류가 탐지되었다.
 
