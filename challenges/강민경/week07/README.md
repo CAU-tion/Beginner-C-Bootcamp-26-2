@@ -266,11 +266,184 @@ challenge2.c:18 in main
 
 해제된 공간은 이후 다른 데이터 저장에 재사용될 수 있다. 이때 이전 포인터로 접근하면 다른 데이터를 잘못 읽거나 덮어쓸 수 있어 프로그램 오류, 데이터 손상, 정보 유출 등의 보안 문제로 이어질 수 있다.
 
+
+## Challenge 3. Double Free Bug 실험 (심화)
+
+### 실습 코드
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    int *p = malloc(sizeof(int));
+
+    if (p == NULL) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return 1;
+    }
+
+    *p = 1234;
+
+    printf("Before free: address = %p, value = %d\n", (void*)p, *p);
+    free(p);
+    puts("First free done");
+
+    free(p);
+    puts("Second free done");
+
+    return 0;
+}
+```
+
+### 컴파일 및 실행
+
+```bash
+gcc -Wall -Wextra -g -O0 challenge3.c -o challenge3
+./challenge3
+```
+
+### 실행 결과
+
+![Challenge 3 실행 결과](images/week07_challenge3.png)
+
+| 확인 항목 | 실제 관찰 결과 |
+|---|---|
+| 할당된 주소 | `0x5a330e6e6010` |
+| 저장한 값 | `1234` |
+| 첫 번째 `free()` | 정상적으로 완료되어 `First free done` 출력 |
+| 두 번째 `free()` | Double Free 오류 탐지 |
+| 오류 메시지 | `free(): double free detected in tcache 2` |
+| 종료 상태 | `Aborted`로 비정상 종료 |
+| `Second free done` 출력 여부 | 출력되지 않음 |
+
+첫 번째 `free()`에서는 메모리가 정상적으로 해제되었다. 이후 같은 포인터로 다시 `free()`를 호출하자 메모리 관리자가 중복 해제를 탐지하고 프로그램을 중단하였다.
+
+### GDB로 해제 시점별 상태 비교
+
+#### 1. 첫 번째 free() 실행 전
+
+첫 번째 `free(p)` 직전에 중단하고 다음 명령어를 입력하였다.
+
+```gdb
+set $saved = p
+print p
+x/1dw $saved
+x/16bx $saved
+```
+
+![첫 번째 free 실행 전](images/week07_challenge3_before_free.png)
+
+| 확인 항목 | 관찰 결과 |
+|---|---|
+| `p`에 저장된 주소 | `0x555555559010` |
+| 해당 주소에서 읽은 정수 | `1234` |
+| 첫 4바이트 | `d2 04 00 00` |
+
+Little Endian 환경에서 `d2 04 00 00`은 `0x000004d2`, 즉 10진수 `1234`를 나타낸다.
+
+`x/16bx`는 할당한 정수의 4바이트와 그 주변 메모리를 함께 관찰한 것이다.
+
+#### 2. 첫 번째 free() 실행 후
+
+`next`로 첫 번째 `free(p)`를 실행한 뒤 같은 주소를 확인하였다.
+
+![첫 번째 free 실행 후](images/week07_challenge3_after_first_free.png)
+
+| 확인 항목 | 첫 번째 해제 전 | 첫 번째 해제 후 |
+|---|---|---|
+| `p`에 저장된 주소 | `0x555555559010` | `0x555555559010` |
+| 해당 주소에서 읽은 정수 | `1234` | `1431655769` |
+| 첫 4바이트 | `d2 04 00 00` | `59 55 55 55` |
+
+`free()` 이후에도 포인터에는 이전 주소가 남아 있었지만, 해당 메모리의 내용은 변경되었다.
+
+`free()`는 포인터 변수를 자동으로 `NULL`로 바꾸지 않는다. 또한 해제된 공간 일부는 메모리 관리용 정보로 사용될 수 있으므로 기존 값이 유지된다고 보장할 수 없다.
+
+디버거에서 해당 주소의 내용을 읽을 수 있더라도 프로그램이 그 공간을 다시 사용해도 된다는 의미는 아니다.
+
+#### 3. 두 번째 free() 실행 직전
+
+`next`로 첫 번째 완료 메시지를 출력하고 두 번째 `free(p)` 직전에서 멈췄다.
+
+![두 번째 free 실행 직전](images/week07_challenge3_before_second_free.png)
+
+`First free done`이 출력되었으며, `p`에는 여전히 `0x555555559010`이 저장되어 있었다. 관찰한 16바이트의 내용도 첫 번째 해제 직후와 같았다.
+
+따라서 두 번째 `free(p)`는 이미 해제된 메모리 주소를 다시 전달하는 상황이었다.
+
+#### 4. 두 번째 free() 실행 후
+
+```gdb
+next
+```
+
+![두 번째 free 오류](images/week07_challenge3_double_free.png)
+
+```text
+free(): double free detected in tcache 2
+Program received signal SIGABRT, Aborted.
+```
+
+두 번째 `free()`에서 중복 해제가 탐지되었고, `SIGABRT` 신호와 함께 실행이 중단되었다.
+
+이는 메모리 관리자가 오류를 발견하고 프로그램을 중단한 것으로, 잘못된 메모리 접근으로 발생하는 `SIGSEGV`와는 구분된다.
+
+함께 표시된 `pthread_kill.c: No such file or directory` 메시지는 GDB가 시스템 라이브러리의 소스 파일을 찾지 못했다는 의미이다. 이번 프로그램 중단의 원인은 해당 파일의 부재가 아니라 Double Free이다.
+
+### Backtrace로 오류 발생 위치 확인
+
+프로그램이 중단된 상태에서 호출 경로를 확인하였다.
+
+```gdb
+bt
+```
+
+![Backtrace 결과](images/week07_challenge3_backtrace.png)
+
+| 호출 경로의 주요 항목 | 의미 |
+|---|---|
+| `main()`의 `challenge3.c:18` | 실제 실습 파일의 두 번째 `free()` 호출 위치 |
+| `tcache_double_free_verify` | tcache에서 중복 해제를 확인하는 내부 함수 |
+| `malloc_printerr` | 메모리 관리 오류 메시지 처리 |
+| `__GI_abort` | 프로그램 중단 |
+| `raise`, `pthread_kill` 관련 함수 | 중단 신호 전달 과정 |
+
+호출 경로를 통해 `main()`에서 실행한 두 번째 `free()`가 중복 해제 검사와 오류 처리를 거쳐 프로그램 중단으로 이어졌음을 확인하였다.
+
+### AddressSanitizer를 이용한 오류 확인
+
+```bash
+gcc -g -O0 -fsanitize=address -fno-omit-frame-pointer challenge3.c -o challenge3_asan
+./challenge3_asan
+```
+
+![AddressSanitizer 실행 결과](images/week07_challenge3_asan.png)
+
+AddressSanitizer에서도 같은 주소에 대한 중복 해제를 탐지하였다.
+
+일반 실행, GDB 실행, AddressSanitizer 실행에서 주소가 서로 다른 것은 각각 별도의 실행이기 때문이다. 각 실행 안에서 동일한 메모리를 두 번 해제했다는 점이 핵심이다.
+
+### Double Free와 보안 취약점
+
+**Double Free**는 한 번 할당한 메모리를 중복하여 해제하는 오류이다. 서로 다른 포인터라도 동일한 메모리 블록을 가리키고 있다면 각각 해제하는 과정에서 Double Free가 발생할 수 있다.
+
+**Heap Metadata**는 메모리 관리자가 메모리 블록의 크기와 할당·해제 상태, 재사용할 블록의 연결 관계 등을 관리하기 위해 사용하는 정보이다.
+
+중복 해제에 대한 검사가 부족한 구현이나 특정 조건에서는 Double Free로 인해 해제된 블록이 중복 등록되거나 관리 정보가 손상될 수 있다. 그 결과 서로 다른 할당이 같은 메모리 영역을 사용하게 되어 한쪽의 쓰기가 다른 쪽의 데이터를 손상시킬 수 있다.
+
+이러한 오류를 악용하여 데이터 변조나 정보 유출 등을 일으키는 공격은 **Heap Exploitation**과 연결된다.
+
 ### 예방 방법
 
-사용이 끝난 메모리를 해제한 뒤에는 해당 포인터를 `NULL`로 설정하고 다시 역참조하지 않아야 한다.
+동적으로 할당한 메모리는 정확히 한 번만 해제하고, 해제 후에는 포인터를 `NULL`로 설정한다.
 
 ```c
 free(p);
 p = NULL;
+
+free(p);  // free(NULL) does nothing.
 ```
+
+`free(NULL)`은 아무 동작도 하지 않으므로 위 코드에서는 중복 해제가 발생하지 않는다.
+
+단, 같은 주소를 다른 포인터에 복사해 둔 경우에는 `p = NULL`을 실행해도 다른 포인터의 값은 바뀌지 않는다. 따라서 메모리를 해제할 책임이 있는 코드를 명확히 정하고, 다른 포인터를 통한 중복 해제도 방지해야 한다.
