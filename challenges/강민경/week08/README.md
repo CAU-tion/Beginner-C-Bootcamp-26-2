@@ -183,6 +183,10 @@ print *head
 ```gdb
 print head
 ```
+![전체 해제 후 head](images/week08_challenge1_free.png)
+
+`free_list()` 실행 후 `head`가 `0x0`, 즉 `NULL`인 것을 확인하였다.
+
 ## Challenge 2. 연결리스트 기반 스택 구현
 
 ### 실습 코드
@@ -298,7 +302,3 @@ gcc -Wall -Wextra -g -O0 challenge2.c -o challenge2
 
 ![스택 실행 결과](images/week08_challenge2.png)
 
-
-![전체 해제 후 head](images/week08_challenge1_free.png)
-
-`free_list()` 실행 후 `head`가 `0x0`, 즉 `NULL`인 것을 확인하였다.
