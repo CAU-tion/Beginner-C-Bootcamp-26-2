@@ -183,6 +183,121 @@ print *head
 ```gdb
 print head
 ```
+## Challenge 2. 연결리스트 기반 스택 구현
+
+### 실습 코드
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+Node *top = NULL;
+
+void push(int data){
+    Node *new_node = malloc(sizeof *new_node);
+
+    if (new_node == NULL) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return;
+    }
+
+    new_node->data = data;
+    new_node->next = top;
+    top = new_node;
+}
+
+int pop(void){
+    if (top == NULL) {
+        puts("Stack is empty. Cannot pop.");
+        return 0;
+    }
+
+    Node *temp = top;
+    int data = temp->data;
+
+    top = temp->next;
+    free(temp);
+
+    printf("Popped: %d\n", data);
+    return data;
+}
+
+int peek(void){
+    if (top == NULL) {
+        puts("Stack is empty. Cannot peek.");
+        return 0;
+    }
+
+    printf("Top: %d\n", top->data);
+    return top->data;
+}
+
+void print_stack(void){
+    Node *current = top;
+
+    printf("TOP -> ");
+
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+
+    puts("NULL");
+}
+
+void free_stack(void){
+    while (top != NULL) {
+        Node *temp = top;
+        top = temp->next;
+        free(temp);
+    }
+}
+
+int main(void){
+    puts("=== Push 1, 2, 3 ===");
+    push(1);
+    push(2);
+    push(3);
+    print_stack();
+
+    puts("\n=== Peek ===");
+    peek();
+    print_stack();
+
+    puts("\n=== Pop twice ===");
+    pop();
+    pop();
+    print_stack();
+
+    puts("\n=== Pop last node ===");
+    pop();
+    print_stack();
+
+    puts("\n=== Pop empty stack ===");
+    pop();
+
+    free_stack();
+
+    return 0;
+}
+```
+
+### 컴파일 및 실행
+
+```bash
+gcc -Wall -Wextra -g -O0 challenge2.c -o challenge2
+./challenge2
+```
+
+### 실행 결과
+
+![스택 실행 결과](images/week08_challenge2.png)
+
 
 ![전체 해제 후 head](images/week08_challenge1_free.png)
 
