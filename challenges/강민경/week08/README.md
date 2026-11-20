@@ -14,18 +14,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node {
+typedef struct Node{
     int data;
     struct Node *next;
 } Node;
 
 Node *head = NULL;
 
-void append(int data)
-{
+void insert(int data){
     Node *new_node = malloc(sizeof *new_node);
 
-    if (new_node == NULL) {
+    if(new_node == NULL){
         fprintf(stderr, "Memory allocation failed\n");
         return;
     }
@@ -33,22 +32,20 @@ void append(int data)
     new_node->data = data;
     new_node->next = NULL;
 
-    if (head == NULL) {
+    if(head == NULL){
         head = new_node;
         return;
     }
-
+    
     Node *current = head;
-
-    while (current->next != NULL) {
+    while(current->next != NULL){
         current = current->next;
     }
-
     current->next = new_node;
-}
 
-void delete(int data)
-{
+
+}
+void delete(int data){
     Node *current = head;
     Node *previous = NULL;
 
@@ -71,60 +68,49 @@ void delete(int data)
     free(current);
 }
 
-void print(void)
-{
+void print(void){
     Node *current = head;
-
-    while (current != NULL) {
+    while(current != NULL){
         printf("%d -> ", current->data);
         current = current->next;
     }
-
-    puts("NULL");
+    printf("NULL\n");
 }
 
-void print_addresses(void)
-{
+void print_address(void){
     Node *current = head;
-
-    while (current != NULL) {
-        printf("data = %d, address = %p, next = %p\n",
-               current->data,
-               (void *)current,
-               (void *)current->next);
-
+    while(current != NULL){
+        printf("data = %d, address = %p, next = %p\n", current->data, (void*)current, (void*)current->next);
         current = current->next;
     }
 }
 
-void free_list(void)
-{
-    while (head != NULL) {
+void free_list(void){
+    while(head != NULL){
         Node *temp = head;
         head = head->next;
         free(temp);
     }
 }
 
-int main(void)
-{
-    for (int i = 1; i <= 5; i++) {
-        append(i * 10);
+int main(void){
+    for(int i = 1; i<=5; i++){
+        insert(i*10);
     }
 
     puts("=== After insertion ===");
     print();
-    print_addresses();
+    print_address();
 
     puts("\n=== Delete 30 ===");
     delete(30);
     print();
-    print_addresses();
+    print_address();
 
     puts("\n=== Free list ===");
     free_list();
     print();
-
+    
     return 0;
 }
 ```
