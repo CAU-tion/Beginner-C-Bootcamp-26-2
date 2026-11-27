@@ -10,8 +10,8 @@ gcc -g -O0 -fno-stack-protector -no-pie challenge1.c -o challenge1
 
 ### Offset과 함수 주소 확인
 
-![Offset 확인](images/week09_offset.png)
-![secret 주소 확인](images/week09_secret.png)
+![Offset 확인](week09_offset.png)
+![secret 주소 확인](week09_secret.png)
 
 | 항목 | 결과 |
 |---|---|
@@ -29,7 +29,7 @@ python3 -c 'import sys, struct; sys.stdout.buffer.write(b"A" * 24 + struct.pack(
 ./challenge1 < payload.bin
 ```
 
-![실행 결과](images/week09_result.png)
+![실행 결과](week09_result.png)
 
 `secret function called!`가 출력되어 실행 흐름이 변경된 것을 확인하였다. 이후 정상적인 복귀 주소가 구성되지 않아 Segmentation fault가 발생하였다.
 
@@ -38,14 +38,19 @@ Little Endian은 하위 바이트부터 저장하는 방식이다. 주소 `0x401
 ## Challenge 2. checksec으로 보호 기법 확인
 
 ```bash
+gcc -g -O0 -no-pie challenge1.c -o vuln_default
+gcc -g -O0 -fstack-protector-strong -no-pie challene1.c -o vuln_protected
+```
+
+```bash
 checksec --file=./challenge1
 checksec --file=./vuln_default
 checksec --file=./vuln_protected
 ```
 
-![보호 해제](images/week09_checksec_off.png)
-![기본 설정](images/week09_checksec_default.png)
-![보호 활성화](images/week09_checksec_on.png)
+![보호 해제](week09_checksec_off.png)
+![기본 설정](week09_checksec_default.png)
+![보호 활성화](week09_checksec_on.png)
 
 | 바이너리 | 스택 보호 옵션 | Canary |
 |---|---|---|
@@ -61,7 +66,7 @@ checksec --file=./vuln_protected
 ./vuln_protected < payload.bin
 ```
 
-![스택 보호 동작](images/week09_canary.png)
+![스택 보호 동작](week09_canary.png)
 
 `stack smashing detected`가 출력되고 프로그램이 중단되었다.
 
