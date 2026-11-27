@@ -1,6 +1,6 @@
 # Week 9
 
-## Challenge 1. 반환 주소 덮어쓰기
+## Challenge 1. ret address 덮어서 실행 흐름 바꾸기
 
 ### 컴파일
 
@@ -35,7 +35,7 @@ python3 -c 'import sys, struct; sys.stdout.buffer.write(b"A" * 24 + struct.pack(
 
 Little Endian은 하위 바이트부터 저장하는 방식이다. 주소 `0x401156`은 `56 11 40 00 00 00 00 00` 순서로 입력하였다.
 
-## Challenge 2. checksec 보호 기법 확인
+## Challenge 2. checksec으로 보호 기법 확인
 
 ```bash
 checksec --file=./challenge1
